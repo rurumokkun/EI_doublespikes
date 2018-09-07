@@ -524,7 +524,7 @@ gr=temp_gr;
                  firing_rate_seq[num][gr][sec]=float(N_firings[gr])/N;
                  
                  if(gr==0){
-                 sprintf(fname_spikes_1,"spikes_1_%dsec_%d_%f.txt",SIM_TIME,sm,sm_i-0.5*num);
+                 sprintf(fname_spikes_1,"spikes_1_%dsec_%.1f_%.1f.txt",SIM_TIME,sm,sm_i-0.5*num);
 
 
 
@@ -538,7 +538,7 @@ gr=temp_gr;
 		fclose(fs_1);
                 }
                 else if(gr ==1){
-                 sprintf(fname_spikes_2,"spikes_2_%dsec_%d_%f.txt",SIM_TIME,sm,sm_i-0.5*num);
+                 sprintf(fname_spikes_2,"spikes_2_%dsec_%.1f_%.1f.txt",SIM_TIME,sm,sm_i-0.5*num);
                  fs_2 = fopen(fname_spikes_2,"w");
 
 
@@ -574,7 +574,7 @@ gr=temp_gr;
 		{
 			s[gr][i][j]+=0.01+sd[gr][i][j];
 			sd[gr][i][j]*=0.9;			
-			if (post[gr][i][j]<Ne[gr][i][j])
+			if (post[gr][i][j]<Ne[gr][num])
                          {
                              if (s[gr][i][j]>sm) s[gr][i][j]=sm;		//重みが上限10を超えない
 			  }
@@ -607,8 +607,8 @@ gr=temp_gr;
 ///////////////////////////////
 ///     LAPの出力        //////
 ///////////////////////////////
-      sprintf(fname_LAP_1,"LAP_1_sm_%d_%f_%dsec.txt",sm,sm_i-0.5*num,SIM_TIME);
-      sprintf(fname_LAP_2,"LAP_2_sm_%d_%f_%dsec.txt",sm,sm_i-0.5*num,SIM_TIME);
+      sprintf(fname_LAP_1,"LAP_1_sm_%.1f_%.1f_%dsec.txt",sm,sm_i-0.5*num,SIM_TIME);
+      sprintf(fname_LAP_2,"LAP_2_sm_%.1f_%.1f_%dsec.txt",sm,sm_i-0.5*num,SIM_TIME);
       //sprintf(fname_LAP_mix,"LAP_mix_EI_%d_%d_%dsec.txt",EI_1,EI_2,SIM_TIME);
       fs_LAP_1=fopen(fname_LAP_1,"a");                                              //"a"は追加書き込み: ファイルがなければ新規作成,あれば末端に追記する
       fs_LAP_2=fopen(fname_LAP_2,"a");
@@ -629,10 +629,10 @@ gr=temp_gr;
 
                 if(sec==0||sec==1000||sec==1999||sec==2999)  //171215 sec==2999追記
 		{
-			sprintf(fname_interpost_s_1,"interpost_s_%d_%dsec_%d_%f.txt",1,sec,sm,sm_i-0.5*num);
-			sprintf(fname_interpost_s_2,"interpost_s_%d_%dsec_%d_%f.txt",2,sec,sm,sm_i-0.5*num);
-			sprintf(fname_s_1,"s_%d_%dsec_%d_%f.txt",1,sec,sm,sm_i-0.5*num);
-			sprintf(fname_s_2,"s_%d_%dsec_%d_%f.txt",2,sec,sm,sm_i-0.5*num);
+			sprintf(fname_interpost_s_1,"interpost_s_%d_%dsec_%.1f_%.1f.txt",1,sec,sm,sm_i-0.5*num);
+			sprintf(fname_interpost_s_2,"interpost_s_%d_%dsec_%.1f_%.1f.txt",2,sec,sm,sm_i-0.5*num);
+			sprintf(fname_s_1,"s_%d_%dsec_%.1f_%.1f.txt",1,sec,sm,sm_i-0.5*num);
+			sprintf(fname_s_2,"s_%d_%dsec_%.1f_%.1f.txt",2,sec,sm,sm_i-0.5*num);
  			
 			fp_interpost_s_1=fopen(fname_interpost_s_1,"w");
 		        fp_interpost_s_2=fopen(fname_interpost_s_2,"w");
