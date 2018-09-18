@@ -580,7 +580,7 @@ gr=temp_gr;
 			  }
                         else
                          {
-                              if (s[gr][i][j]>sm_i-num) s[gr][i][j]=sm_i-num*0.5;		//重みが上限sm_i-num*0.5(=抑制重みのしきい値)を超えない
+                              if (s[gr][i][j]>sm_i-num*0.5) s[gr][i][j]=sm_i-num*0.5;		//重みが上限sm_i-num*0.5(=抑制重みのしきい値)を超えない
                          }
                          if (s[gr][i][j]<0) s[gr][i][j]=0.0;		//重みが下限0を超えない
 		}
@@ -592,8 +592,16 @@ gr=temp_gr;
 		for (j=0;j<interM;j++)
 		{
 			interpost_s[gr][i][j]+=0.01+interpost_sd[gr][i][j];
-			interpost_sd[gr][i][j]*=0.9;			
-			if (interpost_s[gr][i][j]>sm) interpost_s[gr][i][j]=sm;		//重みが上限10を超えない
+			interpost_sd[gr][i][j]*=0.9;
+			if(interpost[gr][i][j]<Ne[gr][num])
+			{			
+			 if (interpost_s[gr][i][j]>sm) interpost_s[gr][i][j]=sm;		//重みが上限10を超えない
+			 }
+                         else
+                         {
+				if(interpost_s[gr][i][j]>sm_i-num*0.5) interpost_s[gr][i][j]=sm_i-num*0.5;
+                          }
+
 			if (interpost_s[gr][i][j]<0) interpost_s[gr][i][j]=0.0;		//重みが下限0を超えない
 		}
 			               }
